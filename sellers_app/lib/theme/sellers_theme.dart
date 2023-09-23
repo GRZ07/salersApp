@@ -80,7 +80,7 @@ class CustomersTextStyles {
     fontSize: 13,
     color: Color(0xff599873),
   );
-  TextStyle displayLarge = const TextStyle(
+  TextStyle display = const TextStyle(
     fontFamily: 'Alexandria',
     fontSize: 10,
     color: Color.fromARGB(255, 117, 117, 117),
