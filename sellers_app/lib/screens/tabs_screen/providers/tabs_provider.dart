@@ -8,7 +8,7 @@ import '../screens/new_orders_screen/providers/new_orders_provider.dart';
 import '../screens/products_screen/providers/products_provider.dart';
 import '../screens/testing_orders_screen/providers/testing_orders_provider.dart';
 
-class TabsScreenProvider with ChangeNotifier {
+class TabsProvider with ChangeNotifier {
   List<Widget> pages = [
     ChangeNotifierProvider.value(
       value: NewOrdersProvider(),

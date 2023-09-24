@@ -7,20 +7,66 @@ class ProductsProvider with ChangeNotifier {
     Product(
       id: 1,
       name: 'Galaxy Note20',
-      desc: 'A great phone',
       brand: 'Samsung',
       features: {
         'RAM': 8,
         'Storage': 128,
         'CPU': 'Snapdragon 865+',
       },
-      flaws: ['flaw 1', 'flaw 2'],
       category: 'phones',
-      rating: 8 / 10,
-      imageUrls: [
-        'https://cdn.dxomark.com/wp-content/uploads/medias/post-65438/galaxynote20.jpg',
-      ],
-      primImageUrl:
+      imageUrl:
+          'https://cdn.dxomark.com/wp-content/uploads/medias/post-65438/galaxynote20.jpg',
+    ),
+    Product(
+      id: 1,
+      name: 'Galaxy Note20',
+      brand: 'Samsung',
+      features: {
+        'RAM': 8,
+        'Storage': 128,
+        'CPU': 'Snapdragon 865+',
+      },
+      category: 'phones',
+      imageUrl:
+          'https://cdn.dxomark.com/wp-content/uploads/medias/post-65438/galaxynote20.jpg',
+    ),
+    Product(
+      id: 1,
+      name: 'Galaxy Note20',
+      brand: 'Samsung',
+      features: {
+        'RAM': 8,
+        'Storage': 128,
+        'CPU': 'Snapdragon 865+',
+      },
+      category: 'phones',
+      imageUrl:
+          'https://cdn.dxomark.com/wp-content/uploads/medias/post-65438/galaxynote20.jpg',
+    ),
+    Product(
+      id: 1,
+      name: 'Galaxy Note20',
+      brand: 'Samsung',
+      features: {
+        'RAM': 8,
+        'Storage': 128,
+        'CPU': 'Snapdragon 865+',
+      },
+      category: 'phones',
+      imageUrl:
+          'https://cdn.dxomark.com/wp-content/uploads/medias/post-65438/galaxynote20.jpg',
+    ),
+    Product(
+      id: 1,
+      name: 'Galaxy Note20',
+      brand: 'Samsung',
+      features: {
+        'RAM': 8,
+        'Storage': 128,
+        'CPU': 'Snapdragon 865+',
+      },
+      category: 'phones',
+      imageUrl:
           'https://cdn.dxomark.com/wp-content/uploads/medias/post-65438/galaxynote20.jpg',
     ),
   ];

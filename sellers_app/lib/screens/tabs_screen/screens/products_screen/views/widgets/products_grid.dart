@@ -15,15 +15,13 @@ class ProductsGrid extends StatelessWidget {
       itemCount: products.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 3 / 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        childAspectRatio: 2 / 2.8,
+        crossAxisSpacing: 15,
+        mainAxisSpacing: 15,
       ),
       itemBuilder: (ctx, i) => ProductGridItem(
         name: products[i].name,
-        primImageUrl: products[i].primImageUrl,
-        rating: products[i].rating,
-        onTap: () {},
+        primImageUrl: products[i].imageUrl,
       ),
     );
   }

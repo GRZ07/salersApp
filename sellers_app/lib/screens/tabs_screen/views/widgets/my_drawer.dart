@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../theme/sellers_theme.dart';
-import '../../providers/tabs_screen_provider.dart';
+import '../../providers/tabs_provider.dart';
 import './drawer_item.dart';
 import '../../../history_screen/views/history_screen.dart';
 
@@ -12,8 +12,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Consumer<TabsScreenProvider>(
-          builder: (context, tabsScreenConsumer, _) {
+      child: Consumer<TabsProvider>(builder: (context, tabsScreenConsumer, _) {
         return Column(
           children: [
             Stack(

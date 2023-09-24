@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import './screens/tabs_screen/views/tabs_screen.dart';
 import './screens/history_screen/views/history_screen.dart';
 import './screens/product_items_screen/views/product_items_screen.dart';
-import './screens/tabs_screen/providers/tabs_screen_provider.dart';
+import 'screens/tabs_screen/providers/tabs_provider.dart';
 import './screens/history_screen/providers/history_provider.dart';
 import './screens/product_items_screen/providers/product_items_provider.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (ctx) => TabsScreenProvider(),
+          create: (ctx) => TabsProvider(),
         ),
         ChangeNotifierProvider(
           create: (ctx) => HistoryProvider(),

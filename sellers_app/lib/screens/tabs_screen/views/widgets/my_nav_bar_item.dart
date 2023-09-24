@@ -32,13 +32,19 @@ class MyNavBarItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              icon,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 3),
+                child: icon,
+              ),
               Text(
                 title,
                 style: SellersTheme.textStyles.display.copyWith(
                     color: selected
                         ? SellersTheme.colors.primaryColor
                         : Colors.grey),
+              ),
+              const SizedBox(
+                height: 3,
               ),
             ],
           ),

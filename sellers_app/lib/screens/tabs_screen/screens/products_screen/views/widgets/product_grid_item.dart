@@ -1,58 +1,59 @@
 import 'package:flutter/material.dart';
 
-import './star_rating.dart';
+import '../../../../../../theme/sellers_theme.dart';
+import '../../../../../product_items_screen/views/product_items_screen.dart';
 
 class ProductGridItem extends StatelessWidget {
   final String name;
   final String primImageUrl;
-  final double rating;
-  final VoidCallback onTap;
 
   const ProductGridItem({
     required this.name,
     required this.primImageUrl,
-    required this.rating,
-    required this.onTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        elevation: 2.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+    return InkWell(
+      onTap: () =>
+          Navigator.of(context).pushNamed(ProductItemsScreen.routeName),
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(8),
+          ),
+          color: Colors.white,
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Container(
-              height: 250.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10.0),
-                  topRight: Radius.circular(10.0),
-                ),
-                image: DecorationImage(
-                  image: NetworkImage(primImageUrl),
+            ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(8),
+              ),
+              child: SizedBox(
+                height: 200,
+                child: Image.network(
+                  primImageUrl,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                name,
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: FittedBox(
+                    child: Text(
+                      name,
+                      style: SellersTheme.textStyles.titleLarge.copyWith(
+                          color: SellersTheme.colors.displayTextColor),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-            StarRating(rating: rating),
           ],
         ),
       ),

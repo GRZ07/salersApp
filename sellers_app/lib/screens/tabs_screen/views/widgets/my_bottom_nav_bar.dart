@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../theme/sellers_theme.dart';
-import '../../providers/tabs_screen_provider.dart';
+import '../../providers/tabs_provider.dart';
 import './my_nav_bar_item.dart';
 
 class MyBottomNavBar extends StatelessWidget {
@@ -10,8 +10,7 @@ class MyBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TabsScreenProvider>(
-        builder: (context, tabsScreenConsumer, _) {
+    return Consumer<TabsProvider>(builder: (context, tabsScreenConsumer, _) {
       return BottomNavigationBar(
         onTap: tabsScreenConsumer.selectPage,
         // Set the size of the labels to zero to hide them and apply a custom label

@@ -43,7 +43,7 @@ class CustomersColors {
   Color errorColor = const Color.fromARGB(255, 155, 55, 77);
   Color backgroundColor = const Color.fromARGB(255, 248, 250, 255);
   Color fieldFillColor = const Color.fromARGB(255, 245, 245, 255);
-  Color displayTextColor = const Color.fromARGB(255, 27, 39, 51);
+  Color displayTextColor = const Color.fromARGB(255, 34, 46, 39);
   Color fieldLabel = Colors.grey;
 }
 
