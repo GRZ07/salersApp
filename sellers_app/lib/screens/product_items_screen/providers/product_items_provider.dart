@@ -1,3 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ProductItemsProvider with ChangeNotifier {}
+import '../models/product_item.dart';
+
+class ProductItemsProvider with ChangeNotifier {
+  final List<ProductItem> _productItems = [];
+
+  List<ProductItem> get productItems => _productItems;
+}

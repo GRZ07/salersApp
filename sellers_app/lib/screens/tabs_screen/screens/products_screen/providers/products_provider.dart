@@ -19,16 +19,16 @@ class ProductsProvider with ChangeNotifier {
     ),
     Product(
       id: 1,
-      name: 'Galaxy Note20',
+      name: 'Galaxy S22',
       brand: 'Samsung',
       features: {
         'RAM': 8,
         'Storage': 128,
-        'CPU': 'Snapdragon 865+',
+        'CPU': 'Snapdragon 8Gen 2',
       },
       category: 'phones',
       imageUrl:
-          'https://cdn.dxomark.com/wp-content/uploads/medias/post-65438/galaxynote20.jpg',
+          'https://image-us.samsung.com/us/smartphones/galaxy-s22/images/gallery/R0_Exclusive-Violet/FLRC-214-R0-Violet-01-PDP-GALLERY-1600x1200.jpg?\$product-details-jpg\$',
     ),
     Product(
       id: 1,
