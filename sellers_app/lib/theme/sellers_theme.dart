@@ -43,7 +43,7 @@ class CustomersColors {
   Color errorColor = const Color.fromARGB(255, 155, 55, 77);
   Color backgroundColor = const Color.fromARGB(255, 248, 250, 255);
   Color fieldFillColor = const Color.fromARGB(255, 245, 245, 255);
-  Color displayTextColor = const Color.fromARGB(255, 27, 39, 51);
+  Color displayTextColor = const Color.fromARGB(255, 34, 46, 39);
   Color fieldLabel = Colors.grey;
 }
 
@@ -80,7 +80,7 @@ class CustomersTextStyles {
     fontSize: 13,
     color: Color(0xff599873),
   );
-  TextStyle displayLarge = const TextStyle(
+  TextStyle display = const TextStyle(
     fontFamily: 'Alexandria',
     fontSize: 10,
     color: Color.fromARGB(255, 117, 117, 117),
