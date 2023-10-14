@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "973601910413",
+    "project_id": "trust-tech-83f11",
+    "storage_bucket": "trust-tech-83f11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973601910413:android:5fbf422a33bb67bff83cc4",
+        "android_client_info": {
+          "package_name": "com.trust_tech.sellers_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXJpgU6HZKddQ611gnwBsoFP6po6t_-cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

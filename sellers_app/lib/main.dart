@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import './api/firebase_api.dart';
 import './screens/tabs_screen/views/tabs_screen.dart';
 import './screens/history_screen/views/history_screen.dart';
 import './screens/product_items_screen/views/product_items_screen.dart';
@@ -9,7 +11,10 @@ import './screens/tabs_screen/providers/tabs_provider.dart';
 import './screens/history_screen/providers/history_provider.dart';
 import './screens/product_items_screen/providers/product_items_provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseAPI().initPushAndLocalNotifications('test_topic');
   runApp(const MyApp());
 }
 
