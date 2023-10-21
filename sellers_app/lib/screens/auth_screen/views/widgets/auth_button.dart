@@ -4,7 +4,7 @@ import '../../../../theme/sellers_theme.dart';
 
 class AuthButton extends StatelessWidget {
   final String label;
-  final void Function() onClick;
+  final void Function()? onClick;
 
   const AuthButton({
     required this.label,
