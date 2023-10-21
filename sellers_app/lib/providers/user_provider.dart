@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user.dart';
@@ -12,7 +11,8 @@ class UserProvider with ChangeNotifier {
   User? _user;
 
   bool get isAuth {
-    return token != null;
+    // return token != null;
+    return true;
   }
 
   int? get userId {
@@ -54,7 +54,6 @@ class UserProvider with ChangeNotifier {
     required int userId,
     required String name,
     required String? imageUrl,
-    required List titles,
   }) async {
     _user = User(
       token: token,
@@ -89,7 +88,6 @@ class UserProvider with ChangeNotifier {
     final name = extractedUserData['name'] as String;
     final username = extractedUserData['username'] as String;
     final imageUrl = extractedUserData['imageUrl'] as String?;
-    final titles = extractedUserData['titles'] as List;
 
     _user = User(
       token: token,

@@ -65,7 +65,6 @@ class LoginProvider with ChangeNotifier {
           responseData['image'] != null && responseData['image'].isNotEmpty
               ? '${dotenv.env['URL']}${responseData["image"]}'
               : null;
-      final titles = responseData['titles'];
 
       if (!context.mounted) return;
       Provider.of<UserProvider>(context, listen: false).createUser(
@@ -74,7 +73,6 @@ class LoginProvider with ChangeNotifier {
         username: receivedUsername,
         name: name,
         imageUrl: imageUrl,
-        titles: titles,
       );
 
       await FirebaseAPI().initNotifications(userId!);
