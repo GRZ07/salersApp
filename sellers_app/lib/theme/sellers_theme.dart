@@ -102,7 +102,7 @@ class CustomersTextStyles {
   );
   TextStyle fieldLabel = TextStyle(
     fontFamily: 'Alexandria',
-    fontSize: 10,
+    fontSize: 13,
     color: SellersTheme.colors.fieldLabel,
   );
 }

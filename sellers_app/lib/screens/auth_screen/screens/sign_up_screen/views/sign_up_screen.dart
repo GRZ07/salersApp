@@ -25,16 +25,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(32),
-                      child: Image.asset(
-                        'assets/profile.png',
-                        height: 300,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
                     Text(
                       'قم بتعبئة البيانات التالية',
                       style: SellersTheme.textStyles.titleLarge,
