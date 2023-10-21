@@ -4,7 +4,6 @@ class User {
   final String name;
   final String token;
   String? imageUrl;
-  final List titles;
 
   User({
     required this.userId,
@@ -12,6 +11,5 @@ class User {
     required this.name,
     required this.token,
     required this.imageUrl,
-    required this.titles,
   });
 }

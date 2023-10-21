@@ -31,10 +31,6 @@ class UserProvider with ChangeNotifier {
     return _user!.imageUrl;
   }
 
-  List? get titles {
-    return _user!.titles;
-  }
-
   String? get token {
     if (_user != null) {
       return _user!.token;
@@ -66,7 +62,6 @@ class UserProvider with ChangeNotifier {
       username: username,
       name: name,
       imageUrl: imageUrl,
-      titles: titles,
     );
     notifyListeners();
 
@@ -77,7 +72,6 @@ class UserProvider with ChangeNotifier {
       'name': _user!.name,
       'username': _user!.username,
       'imageUrl': _user!.imageUrl,
-      'titles': _user!.titles,
     });
     prefs.setString('userData', userData);
   }
@@ -103,7 +97,6 @@ class UserProvider with ChangeNotifier {
       username: username,
       name: name,
       imageUrl: imageUrl,
-      titles: titles,
     );
 
     // FirebaseAPI().initPushAndLocalNotifications();

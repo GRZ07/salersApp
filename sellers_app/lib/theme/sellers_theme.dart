@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class SellersTheme {
+  // Border radius
+  static const double radius = 12;
+
   // Colors
-  static final CustomersColors colors = CustomersColors();
+  static final SellersColors colors = SellersColors();
 
   // Gradients
-  static final CustomersGradients gradients = CustomersGradients();
+  static final SellersGradients gradients = SellersGradients();
 
   // Text
-  static final CustomersTextStyles textStyles = CustomersTextStyles();
+  static final SellersTextStyles textStyles = SellersTextStyles();
 
   // Text selection
   static const textSelectionTheme = TextSelectionThemeData(
@@ -34,7 +37,7 @@ class SellersTheme {
   );
 }
 
-class CustomersColors {
+class SellersColors {
   Color primaryColor = const Color(0xff599873);
   Color primaryColorTransparent = const Color.fromRGBO(16, 94, 177, 0.5);
   Color firstSecondaryColor = const Color.fromARGB(255, 81, 143, 234);
@@ -47,7 +50,7 @@ class CustomersColors {
   Color fieldLabel = Colors.grey;
 }
 
-class CustomersGradients {
+class SellersGradients {
   LinearGradient horizontalGradient = const LinearGradient(
     colors: [
       Color.fromRGBO(26, 112, 176, 0.2),
@@ -68,7 +71,7 @@ class CustomersGradients {
   );
 }
 
-class CustomersTextStyles {
+class SellersTextStyles {
   TextStyle titleLarge = const TextStyle(
     fontFamily: 'Alexandria',
     fontSize: 16,
@@ -107,22 +110,13 @@ class CustomersTextStyles {
   );
 }
 
-class CustomersInputDecoration extends InputDecoration {
+class SellersInputDecoration extends InputDecoration {
   // Login credentials fields
-  CustomersInputDecoration.login({required String label, required String icon})
+  SellersInputDecoration.login({required String label})
       : super(
           labelText: label,
           errorStyle: SellersTheme.textStyles.fieldError,
           floatingLabelBehavior: FloatingLabelBehavior.never,
-          suffixIcon: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Image.asset(
-              'lib/assets/icons/$icon.png', // Assuming the icon is a PNG file
-              color: SellersTheme.colors.primaryColor,
-              height: 15,
-              width: 15,
-            ),
-          ),
           labelStyle: SellersTheme.textStyles.fieldLabel,
           border: const OutlineInputBorder(
               borderSide: BorderSide.none,
@@ -131,7 +125,7 @@ class CustomersInputDecoration extends InputDecoration {
           fillColor: SellersTheme.colors.fieldFillColor,
         );
 // Form fields
-  CustomersInputDecoration.form({required String label, required Widget icon})
+  SellersInputDecoration.form({required String label, required Widget icon})
       : super(
           labelText: label,
           errorStyle: SellersTheme.textStyles.fieldError,
@@ -149,7 +143,7 @@ class CustomersInputDecoration extends InputDecoration {
         );
 
   // Filters fields
-  CustomersInputDecoration.filter({required String label})
+  SellersInputDecoration.filter({required String label})
       : super(
           labelText: label,
           errorStyle: SellersTheme.textStyles.fieldError,
