@@ -10,8 +10,10 @@ import './screens/product_items_screen/views/product_items_screen.dart';
 import './screens/tabs_screen/providers/tabs_provider.dart';
 import './screens/history_screen/providers/history_provider.dart';
 import './screens/product_items_screen/providers/product_items_provider.dart';
-import './screens/auth_screen/screens/login_screen/views/login_screen.dart';
-import './screens/auth_screen/screens/sign_up_screen/views/sign_up_screen.dart';
+import './screens/auth_screen/views/auth_screen.dart';
+import './screens/auth_screen/providers/auth_provider.dart';
+import './providers/user_provider.dart';
+import './screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,36 +30,52 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (ctx) => UserProvider(),
+        ),
+        ChangeNotifierProvider(
           create: (ctx) => TabsProvider(),
         ),
         ChangeNotifierProvider(
           create: (ctx) => ProductItemsProvider(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        locale: const Locale('ar', 'YE'),
-        supportedLocales: const [
-          Locale('ar', 'YE'),
-        ],
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        home: const LoginScreen(),
-        routes: {
-          HistoryScreen.routeName: (ctx) => ChangeNotifierProvider.value(
-                value: HistoryProvider(),
-                child: const HistoryScreen(),
-              ),
-          ProductItemsScreen.routeName: (ctx) => ChangeNotifierProvider.value(
-                value: ProductItemsProvider(),
-                child: const ProductItemsScreen(),
-              ),
-        },
-      ),
+      child: Consumer<UserProvider>(builder: (context, userConsumer, _) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          locale: const Locale('ar', 'YE'),
+          supportedLocales: const [
+            Locale('ar', 'YE'),
+          ],
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: userConsumer.isAuth
+              ? Builder(builder: (context) => TabsScreen())
+              : FutureBuilder(
+                  future: Future.delayed(const Duration(milliseconds: 2000),
+                      () => userConsumer.tryAutoLogin()),
+                  builder: (ctx, authResultSnapshot) =>
+                      authResultSnapshot.connectionState ==
+                              ConnectionState.waiting
+                          ? const SplashScreen()
+                          : ChangeNotifierProvider.value(
+                              value: AuthProvider(), child: const AuthScreen()),
+                ),
+          routes: {
+            HistoryScreen.routeName: (ctx) => ChangeNotifierProvider.value(
+                  value: HistoryProvider(),
+                  child: const HistoryScreen(),
+                ),
+            ProductItemsScreen.routeName: (ctx) => ChangeNotifierProvider.value(
+                  value: ProductItemsProvider(),
+                  child: const ProductItemsScreen(),
+                ),
+          },
+        );
+      }),
     );
   }
 }
