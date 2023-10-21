@@ -10,6 +10,8 @@ import './screens/product_items_screen/views/product_items_screen.dart';
 import './screens/tabs_screen/providers/tabs_provider.dart';
 import './screens/history_screen/providers/history_provider.dart';
 import './screens/product_items_screen/providers/product_items_provider.dart';
+import './screens/auth_screen/screens/login_screen/views/login_screen.dart';
+import './screens/auth_screen/screens/sign_up_screen/views/sign_up_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +23,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        home: TabsScreen(),
+        home: const LoginScreen(),
         routes: {
           HistoryScreen.routeName: (ctx) => ChangeNotifierProvider.value(
                 value: HistoryProvider(),

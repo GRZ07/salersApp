@@ -1,0 +1,131 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/user.dart';
+import '../api/firebase_api.dart';
+import '../utils/show_http_error_snack_bar.dart';
+
+class UserProvider with ChangeNotifier {
+  User? _user;
+
+  bool get isAuth {
+    return token != null;
+  }
+
+  int? get userId {
+    return _user!.userId;
+  }
+
+  String? get name {
+    return _user!.name;
+  }
+
+  String? get username {
+    return _user!.username;
+  }
+
+  String? get imageUrl {
+    return _user!.imageUrl;
+  }
+
+  List? get titles {
+    return _user!.titles;
+  }
+
+  String? get token {
+    if (_user != null) {
+      return _user!.token;
+    }
+    return null;
+  }
+
+  void updateUsername(String newUsername) {
+    _user!.username = newUsername;
+    notifyListeners();
+  }
+
+  void updateImageUrl(String newImageUrl) {
+    _user!.imageUrl = newImageUrl;
+    notifyListeners();
+  }
+
+  void createUser({
+    required String token,
+    required String username,
+    required int userId,
+    required String name,
+    required String? imageUrl,
+    required List titles,
+  }) async {
+    _user = User(
+      token: token,
+      userId: userId,
+      username: username,
+      name: name,
+      imageUrl: imageUrl,
+      titles: titles,
+    );
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    final userData = json.encode({
+      'token': _user!.token,
+      'userId': _user!.userId,
+      'name': _user!.name,
+      'username': _user!.username,
+      'imageUrl': _user!.imageUrl,
+      'titles': _user!.titles,
+    });
+    prefs.setString('userData', userData);
+  }
+
+  Future<void> tryAutoLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey('userData')) {
+      return;
+    }
+    final extractedUserData =
+        json.decode(prefs.getString('userData')!) as Map<String, dynamic>;
+
+    final token = extractedUserData['token'] as String;
+    final userId = extractedUserData['userId'] as int;
+    final name = extractedUserData['name'] as String;
+    final username = extractedUserData['username'] as String;
+    final imageUrl = extractedUserData['imageUrl'] as String?;
+    final titles = extractedUserData['titles'] as List;
+
+    _user = User(
+      token: token,
+      userId: userId,
+      username: username,
+      name: name,
+      imageUrl: imageUrl,
+      titles: titles,
+    );
+
+    // FirebaseAPI().initPushAndLocalNotifications();
+
+    notifyListeners();
+  }
+
+  Future<void> logout(BuildContext context) async {
+    try {
+      await FirebaseAPI()
+          .unsubscribe(userId!)
+          .timeout(const Duration(seconds: 15));
+    } catch (err) {
+      if (!context.mounted) return;
+      showHttpErrorSnackBar(ctx: context, err: err, showServerError: false);
+      return;
+    }
+
+    _user = null;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
+}
