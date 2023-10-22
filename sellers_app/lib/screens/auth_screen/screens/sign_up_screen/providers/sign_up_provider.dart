@@ -23,18 +23,21 @@ class SignUpProvider with ChangeNotifier {
   Future<void> signUp({
     required BuildContext context,
   }) async {
-    formKey.currentState!.validate();
+    if (!formKey.currentState!.validate()) return;
 
     formKey.currentState!.save();
 
     isLoading = true;
     notifyListeners();
-    final url = Uri.parse('${dotenv.env['URL']}/api/login');
+
+    final url = Uri.parse('${dotenv.env['URL']}/api/register');
     try {
       final Map<String, String> request = {
         'username': usernameController.text,
+        'fullName': fullNameController.text,
+        'phoneNumber': phoneNumberController.text,
         'password': passwordController.text,
-        'fCMToken': 'test',
+        'role': 'seller',
       };
       final headers = {
         'Content-Type': 'application/json',
@@ -51,17 +54,18 @@ class SignUpProvider with ChangeNotifier {
           );
       final responseData = json.decode(response.body);
 
-      if (response.statusCode == 401) {
-        throw HttpException(responseData['username'] != null
-            ? responseData['username'][0]
-            : responseData['password'][0]);
+      if (response.statusCode == 400) {
+        throw HttpException(responseData['message']);
       } else if (response.statusCode != 200) {
         throw HttpException('حدث خطأ ما في النظام');
       }
 
+      print(responseData);
+
       final token = responseData['token'];
       final userId = responseData['id'];
-      final name = responseData['name'];
+      final name = responseData['full_name'];
+      final phoneNumber = responseData['phone_number'];
       final receivedUsername = responseData['username'];
       final imageUrl =
           responseData['image'] != null && responseData['image'].isNotEmpty
@@ -74,6 +78,7 @@ class SignUpProvider with ChangeNotifier {
         userId: userId,
         username: receivedUsername,
         name: name,
+        phoneNumber: phoneNumber,
         imageUrl: imageUrl,
       );
 
@@ -82,7 +87,7 @@ class SignUpProvider with ChangeNotifier {
       isLoading = false;
       notifyListeners();
     } catch (err) {
-      // print(err);
+      print(err);
       isLoading = false;
       notifyListeners();
 

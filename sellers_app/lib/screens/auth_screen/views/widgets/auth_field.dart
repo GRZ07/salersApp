@@ -16,15 +16,12 @@ class AuthField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: TextFormField(
-        obscureText: obscureText != null ? obscureText! : false,
-        controller: controller,
-        keyboardType: inputType,
-        decoration: decoration,
-        validator: (value) => value!.trim().isEmpty ? 'هذا الحقل مطلوب' : null,
-      ),
+    return TextFormField(
+      obscureText: obscureText != null ? obscureText! : false,
+      controller: controller,
+      keyboardType: inputType,
+      decoration: decoration,
+      validator: (value) => value!.trim().isEmpty ? 'هذا الحقل مطلوب' : null,
     );
   }
 }

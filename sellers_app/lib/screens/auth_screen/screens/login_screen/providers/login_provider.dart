@@ -21,7 +21,7 @@ class LoginProvider with ChangeNotifier {
   Future<void> login({
     required BuildContext context,
   }) async {
-    formKey.currentState!.validate();
+    if (!formKey.currentState!.validate()) return;
 
     formKey.currentState!.save();
 
@@ -32,7 +32,6 @@ class LoginProvider with ChangeNotifier {
       final Map<String, String> request = {
         'username': usernameController.text,
         'password': passwordController.text,
-        'fCMToken': 'test',
       };
       final headers = {
         'Content-Type': 'application/json',
@@ -49,18 +48,17 @@ class LoginProvider with ChangeNotifier {
           );
       final responseData = json.decode(response.body);
 
-      if (response.statusCode == 401) {
-        throw HttpException(responseData['username'] != null
-            ? responseData['username'][0]
-            : responseData['password'][0]);
+      if (response.statusCode == 400) {
+        throw HttpException(responseData['message']);
       } else if (response.statusCode != 200) {
         throw HttpException('حدث خطأ ما في النظام');
       }
 
       final token = responseData['token'];
       final userId = responseData['id'];
-      final name = responseData['name'];
+      final name = responseData['full_name'];
       final receivedUsername = responseData['username'];
+      final phoneNumber = responseData['phone_number'];
       final imageUrl =
           responseData['image'] != null && responseData['image'].isNotEmpty
               ? '${dotenv.env['URL']}${responseData["image"]}'
@@ -72,6 +70,7 @@ class LoginProvider with ChangeNotifier {
         userId: userId,
         username: receivedUsername,
         name: name,
+        phoneNumber: phoneNumber,
         imageUrl: imageUrl,
       );
 
@@ -80,7 +79,7 @@ class LoginProvider with ChangeNotifier {
       isLoading = false;
       notifyListeners();
     } catch (err) {
-      // print(err);
+      print(err);
       isLoading = false;
       notifyListeners();
 

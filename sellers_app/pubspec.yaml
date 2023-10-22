@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^2.2.2
   http: ^1.1.0
   flutter_dotenv: ^5.1.0
+  easy_autocomplete: ^1.6.0
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,12 @@ flutter:
     # images
     - lib/assets/images/background.png
     - lib/assets/images/profile_placeholder.png
+    - lib/assets/icons/error.png
+    - lib/assets/icons/info.png
+    - lib/assets/icons/success.png
+
+    # environment variables
+    - lib/.env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
