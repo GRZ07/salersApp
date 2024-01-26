@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SellersTheme {
   // Border radius
-  static const double radius = 12;
+  static const double radius = 8;
 
   // Colors
   static final SellersColors colors = SellersColors();
@@ -199,9 +199,11 @@ class SellersInputDecoration extends InputDecoration {
           fillColor: SellersTheme.colors.fieldFillColor,
         );
 
-  SellersInputDecoration.dropdown({required String label})
+  SellersInputDecoration.dropdown(
+      {required String label, required bool enabled})
       : super(
             labelText: label,
+            enabled: enabled,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             labelStyle: SellersTheme.textStyles.fieldLabel,
             border: const OutlineInputBorder(

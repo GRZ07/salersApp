@@ -35,7 +35,9 @@ class MyDrawer extends StatelessWidget {
                     const LoadingDialog(message: 'جار تسجيل الخروج'),
               );
               await logout(context);
-              // scaffoldKey.currentState!.closeDrawer();
+              if (scaffoldKey.currentContext != null) {
+                scaffoldKey.currentState!.closeDrawer();
+              }
               if (!context.mounted) return;
               Navigator.of(context).pop();
             },

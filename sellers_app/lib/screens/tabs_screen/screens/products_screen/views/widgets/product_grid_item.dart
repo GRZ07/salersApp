@@ -30,7 +30,7 @@ class ProductGridItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: const BorderRadius.all(
-                Radius.circular(8),
+                Radius.circular(SellersTheme.radius),
               ),
               child: SizedBox(
                 height: 200,

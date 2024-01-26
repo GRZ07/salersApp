@@ -14,6 +14,10 @@ import './screens/new_product_screen/views/new_product_screen.dart';
 import './screens/new_product_screen/providers/new_product_provider.dart';
 import './screens/auth_screen/views/auth_screen.dart';
 import './screens/auth_screen/providers/auth_provider.dart';
+import './screens/enter_image_screen/views/enter_image_screen.dart';
+import './screens/enter_image_screen/providers/enter_image_provider.dart';
+import './screens/enter_address_screen/views/enter_address_screen.dart';
+import './screens/enter_address_screen/providers/enter_address_screen.dart';
 import './providers/user_provider.dart';
 import './screens/splash_screen.dart';
 
@@ -78,6 +82,14 @@ class MyApp extends StatelessWidget {
             NewProductScreen.routeName: (ctx) => ChangeNotifierProvider.value(
                   value: NewProductProvider(),
                   child: const NewProductScreen(),
+                ),
+            EnterImageScreen.routeName: (ctx) => ChangeNotifierProvider.value(
+                  value: EnterImageProvider(context),
+                  child: const EnterImageScreen(),
+                ),
+            EnterAddressScreen.routeName: (ctx) => ChangeNotifierProvider.value(
+                  value: EnterAddressProvider(),
+                  child: const EnterAddressScreen(),
                 ),
           },
         );

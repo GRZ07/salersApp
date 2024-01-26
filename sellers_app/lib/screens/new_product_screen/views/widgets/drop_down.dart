@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:easy_autocomplete/easy_autocomplete.dart';
+import 'package:provider/provider.dart';
 
-import '../../models/options_drop_down.dart';
 import '../../../../theme/sellers_theme.dart';
 import '../../../../widgets/my_button.dart';
+import '../../providers/new_product_provider.dart';
+
+import '../../models/option.dart';
 
 class DropDown extends StatelessWidget {
-  final OptionsDropDown dropDown;
+  final List<Option> options;
 
   const DropDown({
-    required this.dropDown,
+    required this.options,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Set up the options
-    List<String> options = [];
-    for (String option in [...dropDown.dirs, ...dropDown.devices.keys]) {
-      options.add(option);
-    }
+    final newProductProvider = Provider.of<NewProductProvider>(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -28,11 +27,12 @@ class DropDown extends StatelessWidget {
           Flexible(
             flex: 3,
             child: EasyAutocomplete(
-              suggestions: options,
-              controller: TextEditingController(),
+              suggestions: options.map((option) => option.option).toList(),
+              controller: newProductProvider.dropDownController,
               cursorColor: SellersTheme.colors.primaryColor,
               decoration: SellersInputDecoration.dropdown(
                 label: 'اختر نوع الجهاز',
+                enabled: !newProductProvider.isLoading,
               ),
               suggestionBuilder: (data) {
                 return Container(
@@ -52,13 +52,27 @@ class DropDown extends StatelessWidget {
           Flexible(
             flex: 1,
             child: MyButton(
-                child: Text(
-                  'تم',
-                  style: SellersTheme.textStyles.titleLarge.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-                onClick: () {}),
+              onClick: newProductProvider.isLoading
+                  ? null
+                  : () => newProductProvider.getChoices(
+                      ctx: context, firstLoad: false),
+              child: newProductProvider.isLoading
+                  ? const Center(
+                      child: SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : Text(
+                      'تم',
+                      style: SellersTheme.textStyles.titleLarge.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+            ),
           ),
         ],
       ),

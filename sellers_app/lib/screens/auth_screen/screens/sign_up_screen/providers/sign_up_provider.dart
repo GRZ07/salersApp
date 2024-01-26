@@ -9,6 +9,7 @@ import '../../../../../api/firebase_api.dart';
 import '../../../../../models/http_exception.dart';
 import '../../../../../providers/user_provider.dart';
 import '../../../../../utils/show_http_error_snack_bar.dart';
+import '../../../../../screens/enter_image_screen/views/enter_image_screen.dart';
 
 class SignUpProvider with ChangeNotifier {
   var isLoading = false;
@@ -60,8 +61,6 @@ class SignUpProvider with ChangeNotifier {
         throw HttpException('حدث خطأ ما في النظام');
       }
 
-      print(responseData);
-
       final token = responseData['token'];
       final userId = responseData['id'];
       final name = responseData['full_name'];
@@ -71,6 +70,12 @@ class SignUpProvider with ChangeNotifier {
           responseData['image'] != null && responseData['image'].isNotEmpty
               ? '${dotenv.env['URL']}${responseData["image"]}'
               : null;
+
+      isLoading = false;
+      notifyListeners();
+
+      if (!context.mounted) return;
+      await Navigator.of(context).pushNamed(EnterImageScreen.routeName);
 
       if (!context.mounted) return;
       Provider.of<UserProvider>(context, listen: false).createUser(
@@ -83,11 +88,8 @@ class SignUpProvider with ChangeNotifier {
       );
 
       await FirebaseAPI().initNotifications(userId!);
-
-      isLoading = false;
-      notifyListeners();
     } catch (err) {
-      print(err);
+      // print(err);
       isLoading = false;
       notifyListeners();
 

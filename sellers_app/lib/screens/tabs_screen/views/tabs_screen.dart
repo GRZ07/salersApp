@@ -16,6 +16,7 @@ class TabsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TabsProvider>(builder: (context, tabsConsumer, _) {
       return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(),
         drawer: MyDrawer(
           scaffoldKey: _scaffoldKey,

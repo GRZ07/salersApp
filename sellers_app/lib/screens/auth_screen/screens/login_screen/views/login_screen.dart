@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../../theme/sellers_theme.dart';
 import '../../../providers/auth_provider.dart';
 import '../../../../../widgets/my_button.dart';
-import '../../../views/widgets/auth_field.dart';
+import '../../../../../widgets/my_field.dart';
 import '../providers/login_provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -40,22 +40,30 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(
                         height: 50,
                       ),
-                      AuthField(
+                      MyField(
                         decoration:
                             SellersInputDecoration.login(label: 'اسم المستخدم'),
                         inputType: TextInputType.text,
                         controller: loginProvider.usernameController,
+                        inputAction: TextInputAction.next,
                       ),
                       const SizedBox(
                         height: 15,
                       ),
-                      AuthField(
-                        decoration:
-                            SellersInputDecoration.login(label: 'كلمة المرور'),
-                        inputType: TextInputType.text,
-                        controller: loginProvider.passwordController,
-                        obscureText: true,
-                      ),
+                      Consumer<LoginProvider>(
+                          builder: (context, loginConsumer, _) {
+                        return MyField(
+                          decoration: SellersInputDecoration.login(
+                              label: 'كلمة المرور'),
+                          inputType: TextInputType.text,
+                          controller: loginProvider.passwordController,
+                          inputAction: TextInputAction.go,
+                          obscureText: true,
+                          onSubmitted: loginConsumer.isLoading
+                              ? null
+                              : () => loginProvider.login(context: context),
+                        );
+                      }),
                       const SizedBox(
                         height: 25,
                       ),
@@ -64,7 +72,12 @@ class LoginScreen extends StatelessWidget {
                           return MyButton(
                             onClick: loginConsumer.isLoading
                                 ? null
-                                : () => loginProvider.login(context: context),
+                                : () {
+                                    // Remove focus from all text fields
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                    loginProvider.login(context: context);
+                                  },
                             child: loginConsumer.isLoading
                                 ? const Center(
                                     child: SizedBox(

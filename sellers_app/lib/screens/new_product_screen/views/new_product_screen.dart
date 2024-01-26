@@ -17,14 +17,9 @@ class NewProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final newProductProvider = Provider.of<NewProductProvider>(context);
-
-    final List<Widget> dropDownWidgets = [];
-    for (var dropDown in newProductProvider.dropDowns) {
-      dropDownWidgets.add(
-        DropDown(
-          dropDown: dropDown,
-        ),
-      );
+    final List<Widget> selectedPath = [];
+    for (String value in newProductProvider.selectedPath) {
+      selectedPath.add(Text(value));
     }
 
     return Scaffold(
@@ -32,7 +27,7 @@ class NewProductScreen extends StatelessWidget {
       body: FutureBuilder(
         future: newProductProvider.brandsFetched
             ? null
-            : newProductProvider.getChoices(ctx: context, path: ''),
+            : newProductProvider.getChoices(ctx: context, firstLoad: true),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -57,7 +52,10 @@ class NewProductScreen extends StatelessWidget {
                 const SizedBox(
                   height: 25,
                 ),
-                ...dropDownWidgets,
+                DropDown(
+                  options: newProductProvider.options.last,
+                ),
+                ...selectedPath,
               ],
             );
           }

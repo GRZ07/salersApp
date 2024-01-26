@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
-class AuthField extends StatelessWidget {
+class MyField extends StatelessWidget {
   final InputDecoration decoration;
   final TextInputType inputType;
   final TextEditingController controller;
   final bool? obscureText;
+  final TextInputAction inputAction;
+  final void Function()? onSubmitted;
 
-  const AuthField({
+  const MyField({
     required this.decoration,
     required this.inputType,
     required this.controller,
+    required this.inputAction,
     this.obscureText,
+    this.onSubmitted,
     super.key,
   });
 
@@ -21,6 +25,8 @@ class AuthField extends StatelessWidget {
       controller: controller,
       keyboardType: inputType,
       decoration: decoration,
+      textInputAction: inputAction,
+      onFieldSubmitted: onSubmitted != null ? (_) => onSubmitted!() : null,
       validator: (value) => value!.trim().isEmpty ? 'هذا الحقل مطلوب' : null,
     );
   }

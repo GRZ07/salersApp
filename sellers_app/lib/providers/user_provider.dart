@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user.dart';
-import '../api/firebase_api.dart';
+// import '../api/firebase_api.dart';
 import '../utils/show_http_error_snack_bar.dart';
 
 class UserProvider with ChangeNotifier {
   User? _user;
 
   bool get isAuth {
-    return token != null;
-    // return true;
+    // return token != null;
+    return true;
   }
 
   int? get userId {
@@ -113,10 +113,11 @@ class UserProvider with ChangeNotifier {
 
   Future<void> logout(BuildContext context) async {
     try {
-      await FirebaseAPI()
-          .unsubscribe(userId!)
-          .timeout(const Duration(seconds: 15));
+      // await FirebaseAPI()
+      //     .unsubscribe(userId!)
+      //     .timeout(const Duration(seconds: 15));
     } catch (err) {
+      // print(err);
       if (!context.mounted) return;
       showHttpErrorSnackBar(ctx: context, err: err, showServerError: false);
       return;
