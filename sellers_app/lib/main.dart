@@ -20,6 +20,7 @@ import './screens/enter_address_screen/views/enter_address_screen.dart';
 import './screens/enter_address_screen/providers/enter_address_screen.dart';
 import './providers/user_provider.dart';
 import './screens/splash_screen.dart';
+import './theme/sellers_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +50,14 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: SellersTheme.colors.primaryColor,
+            colorScheme: ColorScheme.fromSwatch(
+              brightness: Brightness.light,
+            ).copyWith(
+              secondary: SellersTheme.colors.primaryColor,
+            ),
+          ),
           locale: const Locale('ar', 'YE'),
           supportedLocales: const [
             Locale('ar', 'YE'),

@@ -27,7 +27,7 @@ class LoginProvider with ChangeNotifier {
 
     isLoading = true;
     notifyListeners();
-    final url = Uri.parse('${dotenv.env['URL']}/api/login');
+    final url = Uri.parse('${dotenv.env['URL']}/api/auth/login');
     try {
       final Map<String, String> request = {
         'username': usernameController.text,
@@ -51,6 +51,7 @@ class LoginProvider with ChangeNotifier {
       if (response.statusCode == 400) {
         throw HttpException(responseData['message']);
       } else if (response.statusCode != 200) {
+        print(response.body);
         throw HttpException('حدث خطأ ما في النظام');
       }
 

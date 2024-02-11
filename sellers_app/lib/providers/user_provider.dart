@@ -11,8 +11,8 @@ class UserProvider with ChangeNotifier {
   User? _user;
 
   bool get isAuth {
-    // return token != null;
-    return true;
+    return token != null;
+    // return true;
   }
 
   int? get userId {

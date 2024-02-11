@@ -17,11 +17,13 @@ class TabsScreen extends StatelessWidget {
     return Consumer<TabsProvider>(builder: (context, tabsConsumer, _) {
       return Scaffold(
         key: _scaffoldKey,
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: SellersTheme.colors.primaryColor,
+        ),
         drawer: MyDrawer(
           scaffoldKey: _scaffoldKey,
         ),
-        backgroundColor: SellersTheme.colors.primaryColor,
+        backgroundColor: SellersTheme.colors.backgroundColor,
         bottomNavigationBar: const MyBottomNavBar(),
         floatingActionButton: tabsConsumer.selectedPageIndex == 1
             ? FloatingActionButton(

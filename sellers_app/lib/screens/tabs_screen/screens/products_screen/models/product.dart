@@ -1,9 +1,10 @@
+import '../../../../../models/feature.dart';
+
 class Product {
   final int id;
   final String name;
   final String brand;
-  final Map<String, dynamic> features;
-  final String category;
+  final List<Feature> features;
   final String imageUrl;
 
   Product({
@@ -11,7 +12,6 @@ class Product {
     required this.name,
     required this.brand,
     required this.features,
-    required this.category,
     required this.imageUrl,
   });
 }

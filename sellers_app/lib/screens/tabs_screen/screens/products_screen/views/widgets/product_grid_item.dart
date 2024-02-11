@@ -18,12 +18,9 @@ class ProductGridItem extends StatelessWidget {
     return InkWell(
       onTap: () =>
           Navigator.of(context).pushNamed(ProductItemsScreen.routeName),
-      child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(8),
-          ),
-          color: Colors.white,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(SellersTheme.radius),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
