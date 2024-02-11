@@ -23,7 +23,7 @@ class EnterAddressScreen extends StatelessWidget {
             height: 25,
           ),
           MyField(
-            decoration: SellersInputDecoration.login(label: 'address'),
+            decoration: SellersInputDecoration.primary(label: 'address'),
             inputType: TextInputType.text,
             controller: enterAddressProvider.addressController,
             inputAction: TextInputAction.next,

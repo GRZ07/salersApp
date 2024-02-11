@@ -50,7 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       MyField(
                         decoration:
-                            SellersInputDecoration.login(label: 'اسم المستخدم'),
+                            SellersInputDecoration.primary(label: 'اسم المستخدم'),
                         inputType: TextInputType.text,
                         controller: signUpProvider.usernameController,
                         inputAction: TextInputAction.next,
@@ -60,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       MyField(
                         decoration:
-                            SellersInputDecoration.login(label: 'الاسم الكامل'),
+                            SellersInputDecoration.primary(label: 'الاسم الكامل'),
                         inputType: TextInputType.text,
                         controller: signUpProvider.fullNameController,
                         inputAction: TextInputAction.next,
@@ -70,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       MyField(
                         decoration:
-                            SellersInputDecoration.login(label: 'رقم الهاتف'),
+                            SellersInputDecoration.primary(label: 'رقم الهاتف'),
                         inputType: TextInputType.number,
                         controller: signUpProvider.phoneNumberController,
                         inputAction: TextInputAction.next,
@@ -81,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Consumer<SignUpProvider>(
                           builder: (context, signUpConsumer, _) {
                         return MyField(
-                          decoration: SellersInputDecoration.login(
+                          decoration: SellersInputDecoration.primary(
                               label: 'كلمة المرور'),
                           inputType: TextInputType.text,
                           controller: signUpProvider.passwordController,

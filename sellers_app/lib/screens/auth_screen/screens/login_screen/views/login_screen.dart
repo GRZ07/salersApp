@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       MyField(
                         decoration:
-                            SellersInputDecoration.login(label: 'اسم المستخدم'),
+                            SellersInputDecoration.primary(label: 'اسم المستخدم'),
                         inputType: TextInputType.text,
                         controller: loginProvider.usernameController,
                         inputAction: TextInputAction.next,
@@ -53,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                       Consumer<LoginProvider>(
                           builder: (context, loginConsumer, _) {
                         return MyField(
-                          decoration: SellersInputDecoration.login(
+                          decoration: SellersInputDecoration.primary(
                               label: 'كلمة المرور'),
                           inputType: TextInputType.text,
                           controller: loginProvider.passwordController,
