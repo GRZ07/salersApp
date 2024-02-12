@@ -112,6 +112,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:sellers_app/screens/account_settings/views/account_settings_screen.dart';
 import 'package:sellers_app/screens/order_details/views/order_details_screen.dart';
 import 'package:sellers_app/screens/order_details/providers/order_details_provider.dart';
 import 'package:sellers_app/screens/tabs_screen/order_screen/views/order_screen.dart';
@@ -188,7 +189,7 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           // Skip authentication and go to TabsScreen directly
-          home: OrdersScreen(),
+          home: AccountSettingsPage(selectedDays: [false,false,false, true, false,false,false],),
           routes: {
             HistoryScreen.routeName: (ctx) => ChangeNotifierProvider.value(
                   value: HistoryProvider(),
